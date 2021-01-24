@@ -1,5 +1,6 @@
 package de.sorted.chaos.opengl.utilities.service
 
+import org.lwjgl.opengl.GL11.glDeleteTextures
 import org.lwjgl.opengl.GL15.glDeleteBuffers
 import org.lwjgl.opengl.GL20.{ glDeleteProgram, glDeleteShader }
 import org.lwjgl.opengl.GL30.glDeleteVertexArrays
@@ -15,6 +16,7 @@ object CleanUp {
   private var vertexArrayObjectIds  = Vector.empty[Int]
   private var shaderIds             = Vector.empty[Int]
   private var shaderProgramIds      = Vector.empty[Int]
+  private var textureIds            = Vector.empty[Int]
 
   /**
     * Adds a VBO ID to the cleanup service
@@ -41,6 +43,12 @@ object CleanUp {
   def addShaderProgramId(id: Int): Unit = shaderProgramIds = shaderProgramIds :+ id
 
   /**
+    * Adds a texture ID to the cleanup service
+    * @param id - the ID of the texture
+    */
+  def addTextureId(id: Int): Unit = textureIds = textureIds :+ id
+
+  /**
     * Starts the cleanup
     */
   def apply(): Unit = {
@@ -49,6 +57,7 @@ object CleanUp {
     cleanupVaos()
     cleanupShaders()
     cleanupShaderPrograms()
+    cleanupTextures()
     Log.info("CleanUp done.")
   }
 
@@ -74,5 +83,11 @@ object CleanUp {
     Log.debug("  Remove Shader program IDs")
     shaderProgramIds.foreach(id => glDeleteProgram(id))
     shaderProgramIds = Vector.empty[Int]
+  }
+
+  private def cleanupTextures(): Unit = {
+    Log.debug("  Remove texture IDs")
+    textureIds.foreach(id => glDeleteTextures(id))
+    textureIds = Vector.empty[Int]
   }
 }
