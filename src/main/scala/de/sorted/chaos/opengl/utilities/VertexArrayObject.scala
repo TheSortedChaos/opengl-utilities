@@ -6,10 +6,24 @@ import org.lwjgl.opengl.GL15.{ glBindBuffer, GL_ARRAY_BUFFER }
 import org.lwjgl.opengl.GL20.glVertexAttribPointer
 import org.lwjgl.opengl.GL30.{ glBindVertexArray, glGenVertexArrays }
 
+/**
+  * Only a named data container instead of a unnamed Tuple2
+  * @param vboId The ID of the VBO which should be used inside the VAO
+  * @param sizeOfDataType The size of the data (e.g. three for 3D coordinates x, y, z or two for texture coordinates u and v
+  */
 final case class VaoItem(vboId: Int, sizeOfDataType: Int)
 
+/**
+ * The VAO is 'something' like a geometric objects. It holds every VBO which is needed to draw it, like
+ * Vertices, TextureCoordinates, Normals, etc.
+ */
 object VertexArrayObject {
 
+  /**
+   * This creates the ID of the VAO
+   * @param vaoItems The VBOs and their data size
+   * @return the ID of the VAO
+   */
   def create(vaoItems: Vector[VaoItem]): Int = {
     val id = glGenVertexArrays()
     glBindVertexArray(id)
