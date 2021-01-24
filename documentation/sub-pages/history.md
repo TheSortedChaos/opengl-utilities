@@ -1,5 +1,10 @@
 # History
 
+## 2021-01-24
+I added some more basic stuff like loading a Shader and creating a Shader Program.
+I also added a TextureLoader.
+After this I added some missing scalaDoc for public methods/functions.
+
 ## 2021-01-23
 I started a new project.
 Again with [Scala][scala] and [LWJGL][lwjgl].
