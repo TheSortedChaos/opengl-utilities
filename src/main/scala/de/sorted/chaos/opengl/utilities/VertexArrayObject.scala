@@ -14,16 +14,16 @@ import org.lwjgl.opengl.GL30.{ glBindVertexArray, glGenVertexArrays }
 final case class VaoItem(vboId: Int, sizeOfDataType: Int)
 
 /**
- * The VAO is 'something' like a geometric objects. It holds every VBO which is needed to draw it, like
- * Vertices, TextureCoordinates, Normals, etc.
- */
+  * The VAO is 'something' like a geometric objects. It holds every VBO which is needed to draw it, like
+  * Vertices, TextureCoordinates, Normals, etc.
+  */
 object VertexArrayObject {
 
   /**
-   * This creates the ID of the VAO
-   * @param vaoItems The VBOs and their data size
-   * @return the ID of the VAO
-   */
+    * This creates the ID of the VAO
+    * @param vaoItems The VBOs and their data size
+    * @return the ID of the VAO
+    */
   def create(vaoItems: Vector[VaoItem]): Int = {
     val id = glGenVertexArrays()
     glBindVertexArray(id)
