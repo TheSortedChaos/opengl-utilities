@@ -9,30 +9,30 @@ lazy val openglUtilities = project
     settings,
     libraryDependencies ++=
       loggingDependencies ++
-        testingDependencies ++
-        lwjglDependencies
+      testingDependencies ++
+      lwjglDependencies
   )
 
 // ------------ [ DEPENDENCIES ] ----------------
 
 lazy val dependencies = new {
 
-  val jomlVersion = "1.9.19"
-  val logbackVersion = "1.2.3"
-  val lwjglVersion = "3.2.3"
+  val jomlVersion      = "1.9.19"
+  val logbackVersion   = "1.2.3"
+  val lwjglVersion     = "3.2.3"
   val scalaTestVersion = "3.0.8"
-  val slf4jVersion = "1.7.30"
+  val slf4jVersion     = "1.7.30"
 
-  val joml = "org.joml" % "joml" % jomlVersion
-  val logback = "ch.qos.logback" % "logback-core" % logbackVersion
+  val joml           = "org.joml"       % "joml"            % jomlVersion
+  val logback        = "ch.qos.logback" % "logback-core"    % logbackVersion
   val logbackClassic = "ch.qos.logback" % "logback-classic" % logbackVersion
-  val lwjgl = "org.lwjgl" % "lwjgl" % lwjglVersion
-  val lwjglGlfw = "org.lwjgl" % "lwjgl-glfw" % lwjglVersion
-  val lwjglOpenGl = "org.lwjgl" % "lwjgl-opengl" % lwjglVersion
-  val lwjglStb = "org.lwjgl" % "lwjgl-stb" % lwjglVersion
-  val scalactic = "org.scalactic" %% "scalactic" % scalaTestVersion
-  val scalatest = "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
-  val slf4j = "org.slf4j" % "slf4j-api" % slf4jVersion
+  val lwjgl          = "org.lwjgl"      % "lwjgl"           % lwjglVersion
+  val lwjglGlfw      = "org.lwjgl"      % "lwjgl-glfw"      % lwjglVersion
+  val lwjglOpenGl    = "org.lwjgl"      % "lwjgl-opengl"    % lwjglVersion
+  val lwjglStb       = "org.lwjgl"      % "lwjgl-stb"       % lwjglVersion
+  val scalactic      = "org.scalactic"  %% "scalactic"      % scalaTestVersion
+  val scalatest      = "org.scalatest"  %% "scalatest"      % scalaTestVersion % "test"
+  val slf4j          = "org.slf4j"      % "slf4j-api"       % slf4jVersion
 }
 
 lazy val loggingDependencies = Seq(
@@ -57,8 +57,8 @@ lazy val testingDependencies = Seq(
 // ------------ [ SETTINGS ] ----------------
 
 lazy val settings =
-  scalafmtSettings ++
-    assemblySettings
+scalafmtSettings ++
+assemblySettings
 
 lazy val scalafmtSettings = Seq(
   scalafmtOnCompile := true,
