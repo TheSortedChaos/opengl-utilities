@@ -1,6 +1,6 @@
 package de.sorted.chaos.opengl.utilities
 
-import org.scalatest.{Matchers, WordSpec}
+import org.scalatest.{ Matchers, WordSpec }
 
 class HelloTest extends WordSpec with Matchers {
 
