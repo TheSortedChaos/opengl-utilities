@@ -6,9 +6,27 @@ import org.lwjgl.opengl.GL.createCapabilities
 import org.lwjgl.opengl.GL11._
 import org.lwjgl.system.MemoryStack
 import org.lwjgl.system.MemoryUtil.NULL
+import org.slf4j.LoggerFactory
 
+/**
+  * A OpenGL window, where all the graphic stuff is happening.
+  */
 object Window {
 
+  private val Log = LoggerFactory.getLogger(this.getClass)
+
+  /**
+    * This creates the OpenGL window
+    * @param title The title of the window
+    * @param width width in pixel e.g. 1920
+    * @param height height in pixel e.g. 1080
+    * @param majorVersion the OpenGL major version e.g. 4
+    * @param minorVersion the OpenGL minor version e.g. 1
+    * @param vsync vertical synchronization on or off
+    * @param wireframe wireframe rendering on or off
+    * @param backfaceCulling backface-culling on or off
+    * @return the windowId
+    */
   def create(title: String,
              width: Int,
              height: Int,
@@ -32,6 +50,7 @@ object Window {
     if (!glfwInit()) {
       throw new RuntimeException("GLFW wasn't able to initialized correctly.")
     }
+    Log.debug("GLFW initialized...")
   }
 
   private def createOpenGlWindow(title: String, width: Int, height: Int) = {
@@ -40,6 +59,7 @@ object Window {
     if (windowId == NULL) {
       throw new RuntimeException("Failed to create the GLFW windowId")
     }
+    Log.debug("windowId created...")
 
     windowId
   }
@@ -51,9 +71,10 @@ object Window {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minorVersion)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE)
+    Log.debug("properties for window set...")
   }
 
-  private def setKeyCallback(windowId: Long): Unit =
+  private def setKeyCallback(windowId: Long): Unit = {
     glfwSetKeyCallback(
       windowId,
       (windowId, key, _, action, _) =>
@@ -61,6 +82,8 @@ object Window {
           glfwSetWindowShouldClose(windowId, true)
       }
     )
+    Log.debug("key callback initialized...")
+  }
 
   private def centerWindow(windowId: Long): Unit = {
     val stack   = MemoryStack.stackPush()
@@ -73,6 +96,7 @@ object Window {
       (vidMode.width() - pWidth.get(0)) / 2,
       (vidMode.height() - pHeight.get(0)) / 2
     )
+    Log.debug("centralized window...")
   }
 
   private def createOpenGlContext(windowId: Long, vsync: Boolean, wireframe: Boolean, backfaceCulling: Boolean): Unit = {
@@ -94,11 +118,13 @@ object Window {
     if (wireframe) {
       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) // Set Wireframe Mode
     }
+    Log.debug("OpenGL context created...")
   }
 
   def destroy(windowId: Long): Unit = {
     glfwDestroyWindow(windowId)
     glfwTerminate()
     glfwSetErrorCallback(null).free()
+    Log.debug("window destroyed...")
   }
 }
