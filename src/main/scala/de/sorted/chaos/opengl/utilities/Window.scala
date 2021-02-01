@@ -50,7 +50,7 @@ object Window {
     if (!glfwInit()) {
       throw new RuntimeException("GLFW wasn't able to initialized correctly.")
     }
-    Log.debug("GLFW initialized...")
+    Log.debug("initialized GLFW")
   }
 
   private def createOpenGlWindow(title: String, width: Int, height: Int) = {
@@ -59,7 +59,7 @@ object Window {
     if (windowId == NULL) {
       throw new RuntimeException("Failed to create the GLFW windowId")
     }
-    Log.debug("windowId created...")
+    Log.debug(s"created OpenGL window with id '$windowId'")
 
     windowId
   }
@@ -71,7 +71,7 @@ object Window {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minorVersion)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE)
-    Log.debug("properties for window set...")
+    Log.debug("set properties for OpenGL window")
   }
 
   private def setKeyCallback(windowId: Long): Unit = {
@@ -82,7 +82,7 @@ object Window {
           glfwSetWindowShouldClose(windowId, true)
       }
     )
-    Log.debug("key callback initialized...")
+    Log.debug("initialized key callback")
   }
 
   private def centerWindow(windowId: Long): Unit = {
@@ -96,7 +96,7 @@ object Window {
       (vidMode.width() - pWidth.get(0)) / 2,
       (vidMode.height() - pHeight.get(0)) / 2
     )
-    Log.debug("centralized window...")
+    Log.debug("centered window on screen")
   }
 
   private def createOpenGlContext(windowId: Long, vsync: Boolean, wireframe: Boolean, backfaceCulling: Boolean): Unit = {
@@ -118,13 +118,13 @@ object Window {
     if (wireframe) {
       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE) // Set Wireframe Mode
     }
-    Log.debug("OpenGL context created...")
+    Log.debug("created OpenGL context")
   }
 
   def destroy(windowId: Long): Unit = {
     glfwDestroyWindow(windowId)
     glfwTerminate()
     glfwSetErrorCallback(null).free()
-    Log.debug("window destroyed...")
+    Log.debug("destroyed window")
   }
 }
