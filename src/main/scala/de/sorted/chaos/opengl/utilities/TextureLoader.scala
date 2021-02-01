@@ -5,10 +5,21 @@ import org.lwjgl.opengl.GL11._
 import org.lwjgl.opengl.GL30.glGenerateMipmap
 import org.lwjgl.stb.STBImage
 import org.lwjgl.system.MemoryStack
+import org.slf4j.LoggerFactory
 
 import java.io.File
 
+/**
+  * Used for loading textures
+  */
 object TextureLoader {
+  private val Log = LoggerFactory.getLogger(this.getClass)
+
+  /**
+    * This load a texture (.png file)
+    * @param filename the path and filename (from resource folder)
+    * @return the id of the texture
+    */
   def load(filename: String): Int = {
     val stack         = MemoryStack.stackPush()
     val widthBuffer   = stack.mallocInt(1)
@@ -50,6 +61,7 @@ object TextureLoader {
     glGenerateMipmap(GL_TEXTURE_2D)
     STBImage.stbi_image_free(buffer)
     CleanUp.addTextureId(textureId)
+    Log.info(s"Loaded texture '$filename'")
 
     textureId
   }
