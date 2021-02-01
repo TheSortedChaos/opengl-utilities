@@ -1,5 +1,8 @@
 # History
 
+## 2021-02-01
+I add a function to create an OpenGL window.
+
 ## 2021-01-24
 I added some more basic stuff like loading a Shader and creating a Shader Program.
 I also added a TextureLoader.
