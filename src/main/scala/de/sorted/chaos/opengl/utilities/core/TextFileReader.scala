@@ -1,4 +1,4 @@
-package de.sorted.chaos.opengl.utilities
+package de.sorted.chaos.opengl.utilities.core
 
 import scala.io.Source
 import scala.util.{ Failure, Success, Try }

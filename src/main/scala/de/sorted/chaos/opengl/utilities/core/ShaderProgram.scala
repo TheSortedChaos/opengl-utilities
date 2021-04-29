@@ -1,4 +1,4 @@
-package de.sorted.chaos.opengl.utilities
+package de.sorted.chaos.opengl.utilities.core
 
 import de.sorted.chaos.opengl.utilities.service.CleanUp
 import org.lwjgl.opengl.GL11.GL_FALSE

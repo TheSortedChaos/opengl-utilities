@@ -1,6 +1,6 @@
-package de.sorted.chaos.opengl.utilities
+package de.sorted.chaos.opengl.utilities.core
 
-import org.scalatest.{ Matchers, WordSpec }
+import org.scalatest.{Matchers, WordSpec}
 
 class TextFileReaderTest extends WordSpec with Matchers {
 
